@@ -1,0 +1,50 @@
+package evalg.doors.gen;
+
+import org.nlogo.app.App;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		App.main(args);
+		File conferencePlan = new File("buildings/conference.plan");
+		File officePlan = new File("building/office.plan");
+		File schoolPlan = new File("building/school.plan");
+		try {
+			Scanner reader = new Scanner(conferencePlan);
+			while(reader.hasNextLine()) {
+				String line = reader.nextLine();
+				System.out.println(line);
+			}
+			reader.close();
+		}catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        /*try {
+            java.awt.EventQueue.invokeAndWait
+                ( new Runnable()
+                    { public void run() {
+                        try {
+                          App.app().open
+                              ("program/"
+                               + "escape4_v6.nlogo");
+                        }
+                        catch( java.io.IOException ex ) {
+                          ex.printStackTrace();
+                        }
+                    } } );
+            App.app().command("set density 62");
+            App.app().command("random-seed 0");
+            App.app().command("setup");
+            App.app().command("repeat 50 [ go ]");
+            System.out.println
+                (App.app().report("burned-trees"));
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }*/	
+	}
+
+}

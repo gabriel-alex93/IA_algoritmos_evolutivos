@@ -1,0 +1,5 @@
+package evalg.doors.gen;
+
+public class Genome {
+
+}
