@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;evalg.doors.gen.Pair.java&apos; to &apos;Gen.java&apos;&#x0D;&#x0A;- Original project: &apos;evalg.doors.gen&apos;&#x0D;&#x0A;- Original element: &apos;evalg.doors.gen.Pair.java&apos;&#x0D;&#x0A;- Renamed element: &apos;evalg.doors.gen.Gen.java&apos;" description="Rename compilation unit &apos;Pair.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;evalg.doors.gen{Pair.java" name="Gen.java" references="false" stamp="1509371195527" version="1.0"/>
+</session>

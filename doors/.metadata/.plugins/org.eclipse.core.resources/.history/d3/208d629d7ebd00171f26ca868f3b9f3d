@@ -57,7 +57,7 @@ public class MainClass {
 					for (int j = 0; j < genome_size; j++) {
 						int gen_idx = getGenIndex(Math.random(),wall.size());
 						while (genome.exist(gen_idx)) gen_idx = getGenIndex(Math.random(),wall.size());
-						genome.addGen(wall.get(gen_idx), gen_idx);
+						genome.addGen(wall.get(gen_idx), gen_id);
 					}
 					generation.add(genome);
 				}

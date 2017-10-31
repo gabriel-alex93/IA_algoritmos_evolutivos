@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MainClass {
 	
-	public static int getGenIndex(double r, int max) {
+	public static int getGenIndex(long r, int max) {
 		/*
 		 * Lo hago como funcion, para encapsular, y así dejar más 
 		 * limpio el codigo y hacerlo más escalable.
@@ -52,15 +52,6 @@ public class MainClass {
 				// si |wall| = Nw, y f(x) : Dom(R)->[0,Nw]; f(x) = mx+b, y R e [0,1]
 				// plt, f(x) = Nw*x
 				ArrayList<Genome> generation =  new ArrayList<>();
-				for (int i = 0; i < generation_size; i++) {
-					Genome genome = new Genome(genome_size);
-					for (int j = 0; j < genome_size; j++) {
-						int gen_idx = getGenIndex(Math.random(),wall.size());
-						while (genome.exist(gen_idx)) gen_idx = getGenIndex(Math.random(),wall.size());
-						genome.addGen(wall.get(gen_idx), gen_idx);
-					}
-					generation.add(genome);
-				}
 			}catch(FileNotFoundException e) {
 				e.printStackTrace();
 			}

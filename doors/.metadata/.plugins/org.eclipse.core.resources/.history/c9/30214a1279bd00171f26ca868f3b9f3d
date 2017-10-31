@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MainClass {
 	
-	public static int getGenIndex(double r, int max) {
+	public static int getGenIndex(long r, int max) {
 		/*
 		 * Lo hago como funcion, para encapsular, y así dejar más 
 		 * limpio el codigo y hacerlo más escalable.
@@ -22,14 +22,14 @@ public class MainClass {
 		String wkspc = new File("").getAbsolutePath()+"/src/";
 		String [] buildingFiles = {"conference.plan","office.plan","office.plan"};
 		int generation_size = 20;
-		int genome_size = 5;
+		int door_num = 5;
 		
 		
 		for(String buildingFile: buildingFiles) {
 			//la idea es: por cada archivo, parsear los puntos y ponerlos en contenedores distintos
-			ArrayList<Gen> outside = new ArrayList<>();
-			ArrayList<Gen> inside = new ArrayList<>();
-			ArrayList<Gen> wall = new ArrayList<>();
+			ArrayList<Pair<Integer,Integer>> outside = new ArrayList<>();
+			ArrayList<Pair<Integer,Integer>> inside = new ArrayList<>();
+			ArrayList<Pair<Integer,Integer>> wall = new ArrayList<>();
 			File buildingPlan = new File(wkspc+"buildings/"+buildingFile);
 			try {
 				Scanner reader = new Scanner(buildingPlan);
@@ -37,13 +37,13 @@ public class MainClass {
 					String [] line = reader.nextLine().split(" ");
 					switch (Integer.parseInt(line[3])) {
 					case 0:
-						inside.add(new Gen(Integer.parseInt(line[0]),Integer.parseInt(line[1])));
+						inside.add(new Pair(Integer.parseInt(line[0]),Integer.parseInt(line[1])));
 						break;
 					case 2:
-						outside.add(new Gen(Integer.parseInt(line[0]),Integer.parseInt(line[1])));
+						outside.add(new Pair(Integer.parseInt(line[0]),Integer.parseInt(line[1])));
 						break;
 					case 64:
-						wall.add(new Gen(Integer.parseInt(line[0]),Integer.parseInt(line[1])));
+						wall.add(new Pair(Integer.parseInt(line[0]),Integer.parseInt(line[1])));
 						break;
 					}
 				}
@@ -52,15 +52,6 @@ public class MainClass {
 				// si |wall| = Nw, y f(x) : Dom(R)->[0,Nw]; f(x) = mx+b, y R e [0,1]
 				// plt, f(x) = Nw*x
 				ArrayList<Genome> generation =  new ArrayList<>();
-				for (int i = 0; i < generation_size; i++) {
-					Genome genome = new Genome(genome_size);
-					for (int j = 0; j < genome_size; j++) {
-						int gen_idx = getGenIndex(Math.random(),wall.size());
-						while (genome.exist(gen_idx)) gen_idx = getGenIndex(Math.random(),wall.size());
-						genome.addGen(wall.get(gen_idx), gen_idx);
-					}
-					generation.add(genome);
-				}
 			}catch(FileNotFoundException e) {
 				e.printStackTrace();
 			}
