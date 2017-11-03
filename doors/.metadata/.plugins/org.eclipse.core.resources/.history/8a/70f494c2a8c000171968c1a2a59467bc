@@ -61,8 +61,7 @@ public class MainClass {
 					best_worst.add(subject);
 					best_worst.add(subject);
 				}else{
-					best_worst.set(0, subject.greater(best_worst.get(0)));
-					best_worst.set(1, subject.lesser(best_worst.get(1)));
+					
 				}
 			}catch (UnsupportedEncodingException uee) {
 				uee.printStackTrace();
@@ -149,7 +148,6 @@ public class MainClass {
 					int gen_idx = 0;
 					double var_delta = 0; //some number;
 					do {
-						System.out.println("Simulando "+gen_idx);
 						runSimulation(NLworkspace, buildingPath, wkspc, generations.get(gen_idx), gen_idx);
 						//select best
 						//select worst
@@ -158,7 +156,7 @@ public class MainClass {
 						//mutate
 						//select for reproduction
 						//reproduce
-					}while(calcVariabilidad(generations.get(gen_idx++)) >= var_delta);
+					}while(calcVariabilidad(generations.get(gen_idx++)) <= var_delta);
 					
 				}catch(FileNotFoundException e) {
 					e.printStackTrace();
@@ -172,20 +170,7 @@ public class MainClass {
 	
 	public static ArrayList<Genome> selectForMutation(ArrayList<Genome> generation, int k){
 		//para este proceso se utilizrá la metodología SUS, combinada con ranking
-		//Se supone que el genoma viene reordenado en forma ascendente, donde 0 es el peor y n el mejor.
-		//el largo de la lista final esta dado por (k^2+k)/2
-		ArrayList<Genome> forMutation =  new ArrayList<>();
-		//se genera una lista con 1 0, 2 1, 3 2, etc
-		ArrayList<Integer> roulette = new ArrayList<>();
-		for (int i = 1; i <= generation.size(); i++) {
-			for (int j = 0; j < (i*i+i)/2; j++) {
-				roulette.add(i);
-			}
-		}
-		//se hacer "girar" -> se determina el pivote
-		int pivot = (int) Math.random()*roulette.size();
-		//mover roullete y selecionar índices segun 'k'
-		return forMutation;
+		return new ArrayList<Genome>();
 	}
 	
 	public static ArrayList<Genome> selectForReproduction(ArrayList<Genome> generation, int k){

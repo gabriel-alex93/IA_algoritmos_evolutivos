@@ -176,15 +176,7 @@ public class MainClass {
 		//el largo de la lista final esta dado por (k^2+k)/2
 		ArrayList<Genome> forMutation =  new ArrayList<>();
 		//se genera una lista con 1 0, 2 1, 3 2, etc
-		ArrayList<Integer> roulette = new ArrayList<>();
-		for (int i = 1; i <= generation.size(); i++) {
-			for (int j = 0; j < (i*i+i)/2; j++) {
-				roulette.add(i);
-			}
-		}
-		//se hacer "girar" -> se determina el pivote
-		int pivot = (int) Math.random()*roulette.size();
-		//mover roullete y selecionar índices segun 'k'
+			
 		return forMutation;
 	}
 	
