@@ -12,6 +12,7 @@ public class Genome {
 	private ArrayList<Gen> gen_list;
 	private ArrayList<Integer> gen_id_list;
 	private int size;
+	private int fitness;
 	
 	public Genome(int size) {
 		this.size = size;
@@ -23,6 +24,10 @@ public class Genome {
 		return gen_list.get(i);
 	}
 	
+	public int getSize() {
+		return this.gen_list.size();
+	}
+	
 	public void addGen(Gen gen, int gen_id) {
 		if (this.gen_list.size() < this.size) {
 			this.gen_list.add(gen);
@@ -32,7 +37,25 @@ public class Genome {
 		}
 	}
 	
+	public void setFitness(int ticks) {
+		this.fitness = ticks;
+	}
+	
+	public int getFitness() {
+		return this.fitness;
+	}
+	
 	public boolean exist(int gen_id) {
 		return this.gen_id_list.contains(gen_id);
+	}
+	
+	public Genome greater(Genome other) {
+		if (this.fitness > other.getFitness()) return this;
+		return other;
+	}
+	
+	public Genome lesser(Genome other) {
+		if (this.fitness < other.getFitness()) return this;
+		return other;
 	}
 }

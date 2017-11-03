@@ -1,16 +1,16 @@
 INDEX VERSION 1.130+C:\Users\kurthenry\Documents\IA uach 2017\AlgoritmosEvolutivos\AlgoritmosEvolutivos\Archivos\doors\.metadata\.plugins\org.eclipse.jdt.core
 3898819926.index
 942946978.index
-3630719722.index
+2744071462.index
 348603814.index
 3510497237.index
 2278961277.index
-2347296031.index
-2744071462.index
-1894341363.index
 35262766.index
 3126539467.index
+1894341363.index
 1662466767.index
+2347296031.index
+3630719722.index
 3293970325.index
 202863815.index
 1857453461.index
@@ -21,13 +21,13 @@ INDEX VERSION 1.130+C:\Users\kurthenry\Documents\IA uach 2017\AlgoritmosEvolutiv
 1023853022.index
 3187359407.index
 3023430483.index
-4162083339.index
 71663515.index
+4162083339.index
 4075061458.index
 3881999212.index
 686449286.index
-3062130097.index
 1497850147.index
+3062130097.index
 2328552719.index
 1274712717.index
 147506196.index
