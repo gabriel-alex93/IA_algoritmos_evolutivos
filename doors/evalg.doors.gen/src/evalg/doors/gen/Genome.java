@@ -2,7 +2,7 @@ package evalg.doors.gen;
 
 import java.util.ArrayList;
 
-public class Genome {
+public class Genome implements Comparable<Genome>{
 	/*
 	 * Me di cuenta que estoy puro webiando con la clase Pair, osea,
 	 * es una excelente estructura de datos que Java debiese implementar....
@@ -57,5 +57,12 @@ public class Genome {
 	public Genome lesser(Genome other) {
 		if (this.fitness < other.getFitness()) return this;
 		return other;
+	}
+
+	@Override
+	public int compareTo(Genome o) {
+		if (this.fitness < o.getFitness()) return -1;
+		if (this.fitness > o.getFitness()) return 1;
+		return 0;
 	}
 }

@@ -1,0 +1,23 @@
+package evalg.doors.gen;
+
+import java.util.ArrayList;
+
+public class Gen {
+
+	public int x;
+	public int y;
+	
+	public Gen(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Gen findClosest(ArrayList<Gen> genList) {
+		Gen closest = genList.get(0);
+		double closestDist = Math.sqrt(Math.pow(this.x-closest.x, 2)+Math.pow(this.y-closest.y, 2));//euclidean distance.
+		for(int i = 1; i < genList.size(); i++) {
+			double currentDist = Math.sqrt(Math.pow(this.x-genList.get(i).x, 2)+Math.pow(this.y-genList.get(i).y, 2));
+		}
+		return closest;
+	}
+}
