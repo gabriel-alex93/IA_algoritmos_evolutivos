@@ -25,7 +25,8 @@ public class MainClass {
 			HeadlessWorkspace wkspc,
 			String path, 
 			ArrayList<Genome> generation, 
-			int gen_idx) 
+			int gen_idx, 
+			int pop_n) 
 	{
 		ArrayList<Genome> best_worst = new ArrayList<>();
 		int subject_idx = 0;
@@ -39,16 +40,14 @@ public class MainClass {
 				}
 				doorsFile.close();
 				wkspc.command("load-fixed-plan-file"); 
-				wkspc.command("load-fixed-door-file");
+				wkspc.command("load-fixed-door-file");            
 				wkspc.command("generate-population");                                    
 				wkspc.command("repeat 200 [ go ]");            
 				wkspc.dispose();
 				wkspc.clearAll();
 				
-				File ticks = new File(wkspc+"NLFiles/"+"seconds.output");
-				Scanner reader = new Scanner(ticks);
-				subject.setFitness(reader.nextInt());
-				reader.close();
+				
+				//correr sym -> implementar en netlogo
 				
 				if(best_worst.size() < 1) {
 					//al comienzo el primer sujeto es el mejor y el peor
@@ -146,16 +145,13 @@ public class MainClass {
 						}
 						generations.get(0).add(genome);
 					}
+					double var_delta = 1; //some number;
 					int best_time = 0;
-					int res_file_idx = 0;
-					File resultsFile = new File(wkspc+"results"+".txt");
-					while (resultsFile.exists()) resultsFile = new File(wkspc+"results"+(++res_file_idx)+".txt");
-					PrintWriter resultsFileW = new PrintWriter(resultsFile);
 					do {
-						resultsFileW.print("Generacion "+(generations.size()-1)+" ");
+						System.out.println("Simulando generacion "+(generations.size()-1));
 						//select best & worst (by running the simulation, also, the fitness of all subjects is calculated
-						ArrayList<Genome> b_w = runSimulation(NLworkspace, wkspc, generations.get(generations.size()-1), generations.size()-1);
-						if (b_w.get(0).getFitness() > best_time) {best_time = b_w.get(0).getFitness();}
+						ArrayList<Genome> b_w = runSimulation(NLworkspace, wkspc, generations.get(generations.size()-1), generations.size()-1, population_size);
+						best_time = b_w.get(0).getFitness();
 						generations.add(new ArrayList<>());
 						generations.get(generations.size()-1).addAll(b_w);
 						//generate random
@@ -178,10 +174,6 @@ public class MainClass {
 						int cant_mut = (int) Math.ceil((generation_size-cant_rand-2)*0.3); 
 						//order subject by fitness
 						Collections.sort(generations.get(generations.size()-2));
-						for(Genome subject:generations.get(generations.size()-2)) {
-							resultsFileW.print(subject.getFitness()+" ");
-						}
-						resultsFileW.println(best_time);
 						//select for mutation
 						ArrayList<Genome> experiments = selectForMutation(generations.get(generations.size()-2), cant_mut);
 						//mutate
@@ -195,8 +187,8 @@ public class MainClass {
 						generations.get(generations.size()-1).addAll(mutants);
 						generations.get(generations.size()-1).addAll(children);
 					}while(--cant_runs > 0);//stop at 1 second of difference (by now)
-					resultsFileW.println("Best Time: "+best_time);
-					resultsFileW.close();
+					
+					System.out.println("Total time for "+buildingPath+" is: "+best_time+"s.");
 				}catch(FileNotFoundException e) {
 					e.printStackTrace();
 				}
